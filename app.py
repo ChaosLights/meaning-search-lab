@@ -1,3 +1,13 @@
+"""
+Meaning Search Lab - Flask backend
+COMS W4170 - Homework 10: Technical Prototype
+
+Architecture:
+- Lessons and quiz content live in data/*.json (no hard-coded content)
+- User choices/visits are appended to user_data.json on every page
+- Single-user assumption (per HW10 spec): one in-memory + on-disk record
+"""
+
 import json
 import os
 from datetime import datetime

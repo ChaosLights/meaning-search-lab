@@ -36,10 +36,10 @@ prototype rather than in the slides:
 
 1. Create a new repository on GitHub (suggested name: `meaning-search-lab`).
 2. Push the contents of this folder.
-3. Invite the other group members and the TA (Daniel Alejandro Manjarrez)
-   as collaborators.
-4. Take a screenshot of the repo page showing the name and the members list
-   (Settings → Collaborators).
+3. Invite the TA (Daniel Alejandro Manjarrez) as a collaborator
+   (Settings → Collaborators → Add people).
+4. Take a screenshot of the repo page showing the name and the
+   collaborators list.
 5. Paste that screenshot into your warm-up PDF.
 
 ```bash
@@ -48,28 +48,24 @@ git init
 git add .
 git commit -m "Initial commit: HW10 technical prototype"
 git branch -M main
-git remote add origin https://github.com/<your-org>/meaning-search-lab.git
+git remote add origin https://github.com/<your-username>/meaning-search-lab.git
 git push -u origin main
 ```
 
 ### #4 — Job assignments
 
-Three-person group: Can Wu, Tianjun Zhong, Chengtao Dai. Per HW10 spec,
-some members hold two roles.
+**Solo project.** Per HW10 spec ("Since you have less than six (6) people in
+your group some people will have to be named twice"), all six roles are
+held by Can Wu.
 
-| Part                          | Role                  | Owner            |
-| ----------------------------- | --------------------- | ---------------- |
-| **Part 1 — Learning portion** | Architecting the data | Can Wu           |
-|                               | Implementing the UI   | Can Wu           |
-|                               | Click-through testing | Tianjun Zhong    |
-| **Part 2 — Quiz portion**     | Architecting the data | Chengtao Dai     |
-|                               | Implementing the UI   | Chengtao Dai     |
-|                               | Click-through testing | Tianjun Zhong    |
-
-Rationale: Can owned the lesson content in HW9 so he continues there;
-Chengtao was the target user and is well-positioned to own the quiz
-(which is most user-facing); Tianjun did testing and note-taking in HW9
-so he extends that into click-through QA on both parts.
+| Part                          | Role                  | Owner   |
+| ----------------------------- | --------------------- | ------- |
+| **Part 1 — Learning portion** | Architecting the data | Can Wu  |
+|                               | Implementing the UI   | Can Wu  |
+|                               | Click-through testing | Can Wu  |
+| **Part 2 — Quiz portion**     | Architecting the data | Can Wu  |
+|                               | Implementing the UI   | Can Wu  |
+|                               | Click-through testing | Can Wu  |
 
 ---
 
@@ -93,32 +89,28 @@ Bring laptops with the app running for the TA feedback session.
    wrong answer to show the red feedback then the correct one, end on the
    Results page showing 2/2.
 
-### Individual deliverable (each member submits)
+### Individual deliverable
 
-A short write-up (paragraph or bullets) of what *you* personally did this
-week plus a screenshot of one commit you made to the repo.
+A short write-up (paragraph or bullets) of what you did this week plus a
+screenshot of one commit you made to the repo.
 
 **Suggested wording (edit to match what you actually did):**
 
-> **Can Wu** — Designed the lesson data schema in `data/lessons.json` (7
-> lesson types with a single dispatching template). Implemented all 7
-> lesson states in `templates/learn.html` and the corresponding sections
-> of `static/css/style.css` (meaning-space canvas, ranking rows, recap
-> steps). Wrote the Flask routes for `/`, `/start`, and `/learn/<n>` in
-> `app.py`.
->
-> **Chengtao Dai** — Designed the quiz data schema in `data/quiz.json`
-> (question + correct/incorrect feedback bundles). Implemented
-> `templates/quiz.html` and `templates/results.html`, plus the AJAX
-> submission + inline feedback rendering in `static/js/main.js`. Wrote
-> the `/quiz/<n>`, `/api/quiz/answer`, `/results`, `/restart` routes in
-> `app.py`.
->
-> **Tianjun Zhong** — Click-through QA: walked the app end-to-end on
-> macOS Chrome and Windows Firefox, filed and verified fixes for the
-> nested-`<body>` bug on the quiz page, the missing inline "Retry" link
-> in feedback view, and the back-button target on Q1. Wrote the README
-> and SUBMISSION_GUIDE.
+> **Can Wu (solo)** — Built the full Flask technical prototype end to end.
+> Designed the lesson data schema in `data/lessons.json` (7 lesson types
+> with a single dispatching template) and the quiz schema in
+> `data/quiz.json` (questions + correct/incorrect feedback bundles).
+> Implemented all Flask routes in `app.py` (`/`, `/start`, `/learn/<n>`,
+> `/quiz/<n>`, `/api/quiz/answer`, `/results`, `/restart`) including
+> backend tracking of every page visit and quiz answer to
+> `user_data.json`. Implemented `templates/base.html`,
+> `templates/home.html`, `templates/learn.html` (with type-dispatched
+> rendering for all 7 lesson layouts), `templates/quiz.html`, and
+> `templates/results.html`. Wrote the CSS in `static/css/style.css`
+> (inherits the navy + teal palette from the HW9 low-fi) and the
+> jQuery interactions in `static/js/main.js` (option selection, AJAX
+> answer submission, inline feedback rendering with retry/next links).
+> QA-tested the click-through across all 9 states.
 
 ### What the TA will check (per HW10 spec)
 
@@ -133,8 +125,8 @@ week plus a screenshot of one commit you made to the repo.
 - [x] Each page shows data + instructions + records data + advances — yes
 - [x] Quiz produces an end score — `/results` reports
       `correct_count / total`
-- [ ] Everyone in the group must check something in — each member should
-      push at least one commit before the TA session
+- [x] *"Everyone in the group must check something in"* — solo group, so
+      every commit satisfies this
 
 ---
 

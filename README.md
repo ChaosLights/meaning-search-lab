@@ -1,6 +1,6 @@
 # Meaning Search Lab — Technical Prototype (HW10)
 
-COMS W4170 — Group project (Can Wu, Tianjun Zhong, Chengtao Dai)
+COMS W4170 — Solo project, Can Wu
 TA: Daniel Alejandro Manjarrez
 
 A clickable web app teaching **why semantic search matches meaning, not just shared
@@ -101,13 +101,14 @@ You can inspect it live at <http://localhost:5000/api/debug/user_data>.
 
 ## Roles (HW10 warm-up #4)
 
-| Role                                  | Owner            |
-| ------------------------------------- | ---------------- |
-| Learning portion — data architecture  | Can Wu           |
-| Learning portion — UI implementation  | Can Wu           |
-| Learning portion — click-through test | Tianjun Zhong    |
-| Quiz portion — data architecture      | Chengtao Dai     |
-| Quiz portion — UI implementation      | Chengtao Dai     |
-| Quiz portion — click-through test     | Tianjun Zhong    |
+Solo project. Per HW10 spec ("less than 6 people in your group some
+people will have to be named twice"), Can Wu owns all roles.
 
-(Three-person group, so some members hold two roles per the HW10 spec.)
+| Role                                  | Owner   |
+| ------------------------------------- | ------- |
+| Learning portion — data architecture  | Can Wu  |
+| Learning portion — UI implementation  | Can Wu  |
+| Learning portion — click-through test | Can Wu  |
+| Quiz portion — data architecture      | Can Wu  |
+| Quiz portion — UI implementation      | Can Wu  |
+| Quiz portion — click-through test     | Can Wu  |
