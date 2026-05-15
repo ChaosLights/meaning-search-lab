@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local user session (regenerated on each run)
+user_data.json
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

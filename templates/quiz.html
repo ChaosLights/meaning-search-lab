@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Quiz Q{{ q_num }} — Meaning Search Lab{% endblock %}
+{% block body_class %}quiz-mode{% endblock %}
+
+{% block content %}
+<div class="msl-quiz-banner">
+  <span>&#10067;</span>
+  <span>Quiz &mdash; Question {{ q_num }} of {{ total_questions }}</span>
+</div>
+
+<div class="container-fluid mt-3">
+  <div id="msl-question" data-q-num="{{ q_num }}">
+    <div class="msl-question">{{ question.question }}</div>
+
+    {% if question.query %}
+      <div class="msl-query-bar">
+        <strong>Query:</strong> &ldquo;{{ question.query }}&rdquo;
+      </div>
+    {% endif %}
+
+    {% for opt in question.options %}
+      <div class="msl-option" data-option-id="{{ opt.id }}">
+        <div class="msl-option-id">{{ opt.id }}</div>
+        <div class="msl-option-text">{{ opt.text }}</div>
+      </div>
+    {% endfor %}
+
+    <p class="msl-hint">Tap an answer card, then click <em>Check answer</em>.</p>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<div id="msl-footnav-slot">
+  <div class="msl-footnav">
+    <a class="msl-btn msl-btn-secondary"
+       href="{% if q_num == 1 %}{{ url_for('learn', lesson_num=7) }}{% else %}{{ url_for('quiz', q_num=q_num - 1) }}{% endif %}">
+      &lsaquo; Back
+    </a>
+    <button id="msl-submit" class="msl-btn msl-btn-primary" disabled>
+      Check answer &rsaquo;
+    </button>
+  </div>
+</div>
+{% endblock %}

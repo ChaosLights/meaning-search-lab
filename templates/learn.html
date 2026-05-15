@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% block title %}Lesson {{ lesson_num }} — Meaning Search Lab{% endblock %}
+
+{% block header_right %}
+  <span class="msl-dots ms-auto">
+    {% for i in range(1, dots_total + 1) %}
+      <span class="msl-dot {% if i == lesson_num %}active{% endif %}"></span>
+    {% endfor %}
+  </span>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <h2 class="msl-page-title">{{ lesson.title }}</h2>
+
+  {% if lesson.instruction %}
+  <div class="msl-instruction">{{ lesson.instruction }}</div>
+  {% endif %}
+
+  {# ============================================================
+     Dispatch by lesson type. Each type renders a different layout.
+     ============================================================ #}
+
+  {# ---------- Type: two_ways ---------- #}
+  {% if lesson.type == "two_ways" %}
+    <div class="msl-query-box mb-3">
+      <span>&#x1F50D;</span>
+      <span>Query: &ldquo;{{ lesson.query }}&rdquo;</span>
+    </div>
+    <div class="msl-two-cols">
+      {% for a in lesson.approaches %}
+        <div class="msl-card msl-approach">
+          <h3>{{ a.name }}</h3>
+          <p>{{ a.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+    <h5 class="mt-2 mb-2"><strong>Candidate documents:</strong></h5>
+    {% for d in lesson.documents %}
+      <div class="msl-doc-card doc-{{ d.id }}">
+        <span class="msl-doc-id">Doc {{ d.id }}</span>
+        <div>{{ d.text }}</div>
+      </div>
+    {% endfor %}
+
+  {# ---------- Type: keyword_ranking ---------- #}
+  {% elif lesson.type == "keyword_ranking" %}
+    {% for r in lesson.rankings %}
+      <div class="msl-rank-row">
+        <div class="msl-rank-num color-{{ r.color }}">#{{ r.rank }}</div>
+        <div class="msl-rank-body">
+          <div class="doc-id">Doc {{ r.doc_id }}</div>
+          <div class="doc-text">{{ r.text }}</div>
+        </div>
+        <div class="msl-rank-reason color-{{ r.color }}">{{ r.reason }}</div>
+      </div>
+    {% endfor %}
+    <div class="msl-insight">
+      <span>&#128161;</span>
+      <span>{{ lesson.insight }}</span>
+    </div>
+
+  {# ---------- Type: synonym_demo ---------- #}
+  {% elif lesson.type == "synonym_demo" %}
+    <div class="msl-syn-pair">
+      <div class="msl-syn-box">&ldquo;{{ lesson.pair.left }}&rdquo;</div>
+      <div class="msl-syn-equals">=</div>
+      <div class="msl-syn-box">&ldquo;{{ lesson.pair.right }}&rdquo;</div>
+    </div>
+    <p class="text-center text-muted">{{ lesson.subtitle }}</p>
+    <div class="msl-space">
+      <div class="msl-space-title">{{ lesson.meaning_space_note }}</div>
+      <div class="msl-space-canvas">
+        {% for p in lesson.points %}
+          <div class="msl-point" style="left: {{ p.x }}%; top: {{ p.y }}%;">
+            <span class="dot bg-{{ p.color }}"></span>
+            <span class="label color-{{ p.color }}">{{ p.label }}</span>
+          </div>
+        {% endfor %}
+        <span class="msl-space-tag close">close!</span>
+        <span class="msl-space-tag far">far</span>
+      </div>
+    </div>
+
+  {# ---------- Type: embed_query ---------- #}
+  {% elif lesson.type == "embed_query" %}
+    <div class="msl-embed-row">
+      <div class="msl-query-box mb-0">
+        <span>&#x1F50D;</span>
+        <span>&ldquo;{{ lesson.query }}&rdquo;</span>
+      </div>
+      <div class="msl-embed-arrow">&rarr;</div>
+      <div class="msl-embed-vec">
+        <div class="model-name">{{ lesson.model }}</div>
+        <code>{{ lesson.embedding_preview }}</code>
+      </div>
+    </div>
+    <div class="msl-explain">
+      <h4>&#129504; What just happened?</h4>
+      {% for line in lesson.explanation %}
+        <p>{{ line }}</p>
+      {% endfor %}
+    </div>
+
+  {# ---------- Type: embed_documents ---------- #}
+  {% elif lesson.type == "embed_documents" %}
+    <div class="msl-space">
+      <div class="msl-space-title">{{ lesson.meaning_space_note }}</div>
+      <div class="msl-space-canvas">
+        {% for p in lesson.points %}
+          <div class="msl-point" style="left: {{ p.x }}%; top: {{ p.y }}%;"
+               title="{{ p.subtext }}">
+            <span class="dot bg-{{ p.color }}"></span>
+            <span>
+              <div class="label color-{{ p.color }}">{{ p.label }}</div>
+              <div class="sub">{{ p.subtext }}</div>
+            </span>
+          </div>
+        {% endfor %}
+        <span class="msl-space-tag far" style="top: 60%; left: 45%;">far apart</span>
+      </div>
+    </div>
+
+  {# ---------- Type: score_rank ---------- #}
+  {% elif lesson.type == "score_rank" %}
+    {% for r in lesson.rankings %}
+      <div class="msl-score-row">
+        <div class="msl-score-num color-{{ r.color }}">
+          <div class="num">{{ r.score }}</div>
+          <div class="docid">Doc {{ r.doc_id }}</div>
+        </div>
+        <div class="msl-score-body">
+          <h4>{{ r.title }}</h4>
+          <div class="reason">{{ r.reason }}</div>
+        </div>
+      </div>
+    {% endfor %}
+    {% if lesson.note %}
+      <p class="text-muted small mt-1">{{ lesson.note }}</p>
+    {% endif %}
+    <div class="msl-insight positive">
+      <span>&#10003;</span>
+      <span>{{ lesson.insight }}</span>
+    </div>
+
+  {# ---------- Type: recap ---------- #}
+  {% elif lesson.type == "recap" %}
+    <div class="msl-callout">
+      <span class="ico">&#128161;</span>
+      <span>{{ lesson.callout }}</span>
+    </div>
+    {% for s in lesson.steps %}
+      <div class="msl-recap-step">
+        <div class="msl-step-circle">{{ s.num }}</div>
+        <div>
+          <h4>{{ s.title }}</h4>
+          <p>{{ s.description }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+</div>
+{% endblock %}
+
+{% block footer %}
+<div class="msl-footnav">
+  <a class="msl-btn msl-btn-secondary" href="{{ prev_url }}">
+    &lsaquo; {% if is_first %}Home{% else %}Back{% endif %}
+  </a>
+  <a class="msl-btn msl-btn-primary" href="{{ next_url }}">
+    {% if is_last %}Start quiz{% else %}Next{% endif %} &rsaquo;
+  </a>
+</div>
+{% endblock %}

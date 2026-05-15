@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Your results — Meaning Search Lab{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="msl-results-hero">
+    <div class="label">Your Score</div>
+    <div class="score">{{ correct_count }} / {{ total }}</div>
+    <div>
+      {% if correct_count == total %}
+        Excellent — you've got the semantic-search intuition down!
+      {% elif correct_count >= 1 %}
+        Solid work. Review the lessons to sharpen your understanding.
+      {% else %}
+        That's OK — head back through the lessons and try again.
+      {% endif %}
+    </div>
+  </div>
+
+  <h4>Per-question summary</h4>
+  {% for row in summary %}
+    <div class="msl-result-row">
+      <div><strong>Q{{ row.q_num }}.</strong></div>
+      <div class="flex-grow-1">{{ row.question }}</div>
+      <div>
+        {% if not row.answered %}
+          <span class="badge badge-bad">Skipped</span>
+        {% elif row.correct %}
+          <span class="badge badge-ok">Correct ({{ row.user_choice }})</span>
+        {% else %}
+          <span class="badge badge-bad">
+            You: {{ row.user_choice }} · Correct: {{ row.correct_choice }}
+          </span>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+
+  {% if started_at and finished_at %}
+    <p class="text-muted small mt-3">
+      Session: {{ started_at }} &rarr; {{ finished_at }}
+    </p>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block footer %}
+<div class="msl-footnav">
+  <a class="msl-btn msl-btn-secondary" href="{{ url_for('learn', lesson_num=1) }}">
+    &lsaquo; Review lessons
+  </a>
+  <form action="{{ url_for('restart') }}" method="post" class="m-0">
+    <button type="submit" class="msl-btn msl-btn-primary">
+      Restart lesson &#x21BB;
+    </button>
+  </form>
+</div>
+{% endblock %}

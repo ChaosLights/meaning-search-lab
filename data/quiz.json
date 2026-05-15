@@ -1,0 +1,80 @@
+{
+  "total_questions": 2,
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which document is the best semantic match for this query?",
+      "query": "How can I fix a car that will not start?",
+      "options": [
+        { "id": "A", "text": "Motorcycle engine maintenance tips for beginners" },
+        { "id": "B", "text": "Troubleshooting an automobile that will not turn on" },
+        { "id": "C", "text": "Car seat cleaning tips for leather interiors" }
+      ],
+      "correct": "B",
+      "feedback": {
+        "correct": {
+          "title": "B is the best semantic match.",
+          "why_correct": [
+            "automobile \u2248 car  (synonyms for the same vehicle type)",
+            "will not turn on \u2248 will not start  (same failure concept)",
+            "troubleshooting \u2248 fixing  (same repair intent)"
+          ],
+          "why_others": [
+            "A (motorcycle maintenance): shares the vehicle-repair domain, but motorcycle \u2260 car and maintenance \u2260 fixing a starting failure",
+            "C (car seat cleaning): shares the surface word \"car\" but the topic is cleaning, not repair"
+          ]
+        },
+        "incorrect": {
+          "title": "The correct answer is B.",
+          "review": [
+            {
+              "heading": "If you chose A (motorcycle maintenance):",
+              "body": "This is a strong distractor! Motorcycles and cars are both motor vehicles, and maintenance is related to repair. But semantic search looks at the full intent: the query is about a car that will not start, while option A is about general motorcycle upkeep. The meaning is close but not the best match."
+            },
+            {
+              "heading": "If you chose C (car seat cleaning):",
+              "body": "\"Car\" appears in both, but keyword overlap is exactly the trap! Cleaning is a different task from fixing a starting problem."
+            }
+          ],
+          "summary": "B works because \"automobile \u2248 car\" and \"will not turn on \u2248 will not start\" \u2014 the meaning aligns even though the wording differs."
+        }
+      }
+    },
+    {
+      "id": 2,
+      "question": "Why did keyword search rank the irrelevant shoe-brands document first in the puppy example?",
+      "query": null,
+      "options": [
+        { "id": "A", "text": "Because the most relevant document used related words (slippers, biting) instead of exact query words (shoes, chewing)" },
+        { "id": "B", "text": "Because semantic search always prefers longer documents" },
+        { "id": "C", "text": "Because keyword search ignores nouns and only looks at verbs" }
+      ],
+      "correct": "A",
+      "feedback": {
+        "correct": {
+          "title": "A is correct.",
+          "why_correct": [
+            "Keyword search counts exact word matches. The shoe-brands doc matched on \"shoe,\" while the actually helpful Doc A used synonyms: slippers \u2248 shoes | biting \u2248 chewing | dogs \u2248 puppy",
+            "Keyword search cannot recognize these meaning links, so it over-valued the surface match (\"shoe brands\") and missed the best answer.",
+            "Semantic search captures this synonymy because embeddings place related concepts close together in meaning space."
+          ],
+          "why_others": []
+        },
+        "incorrect": {
+          "title": "The correct answer is A.",
+          "review": [
+            {
+              "heading": "If you chose B (\"semantic search prefers longer documents\"):",
+              "body": "Document length is not what drives semantic ranking. Semantic search scores meaning similarity regardless of how long a passage is."
+            },
+            {
+              "heading": "If you chose C (\"keyword search ignores nouns\"):",
+              "body": "Keyword search does count nouns \u2014 that is exactly why \"shoe\" in the brands doc earned a high ranking. The problem is that keyword search can only see exact surface words, not synonyms or related concepts."
+            }
+          ],
+          "summary": "The real issue: the best document used slippers instead of shoes and biting instead of chewing. Keyword search has no way to know these are equivalent, so it ranked the wrong doc first."
+        }
+      }
+    }
+  ]
+}

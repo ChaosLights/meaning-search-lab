@@ -1,0 +1,165 @@
+{
+  "topic": {
+    "title": "Meaning Search Lab",
+    "tagline": "Why semantic search matches meaning, not just shared words",
+    "example_query": "How do I stop my puppy from chewing my shoes?"
+  },
+  "total_lessons": 7,
+  "lessons": [
+    {
+      "id": 1,
+      "type": "two_ways",
+      "title": "Two Ways to Search",
+      "query": "How do I stop my puppy from chewing my shoes?",
+      "approaches": [
+        {
+          "name": "Keyword Search",
+          "description": "Counts how many words overlap between query and document"
+        },
+        {
+          "name": "Semantic Search",
+          "description": "Measures how close in meaning the query and document are"
+        }
+      ],
+      "documents": [
+        { "id": "A", "text": "How to stop dogs from biting slippers at home" },
+        { "id": "B", "text": "Puppy chewing fixes using safe toys and redirection" },
+        { "id": "C", "text": "Best leather shoe brands for winter" }
+      ],
+      "instruction": "Below you'll see three candidate documents. The next two lessons will show how keyword vs. semantic search rank them differently."
+    },
+    {
+      "id": 2,
+      "type": "keyword_ranking",
+      "title": "Keyword Search: Likely Ranking",
+      "instruction": "Keyword search counts exact word overlap. See how it ranks the three documents \u2014 and notice that the most useful doc (Doc A) ends up last.",
+      "rankings": [
+        {
+          "rank": 1,
+          "doc_id": "C",
+          "text": "Best leather shoe brands for winter",
+          "reason": "\"shoe\" matches query word",
+          "color": "red"
+        },
+        {
+          "rank": 2,
+          "doc_id": "B",
+          "text": "Puppy chewing fixes using safe toys and redirection",
+          "reason": "\"puppy\", \"chewing\" match",
+          "color": "orange"
+        },
+        {
+          "rank": 3,
+          "doc_id": "A",
+          "text": "How to stop dogs from biting slippers at home",
+          "reason": "No exact query words!",
+          "color": "gray"
+        }
+      ],
+      "insight": "Keyword search rewarded surface word overlap (\"shoe\") and ranked the irrelevant doc highest. The most helpful answer (Doc A) landed last."
+    },
+    {
+      "id": 3,
+      "type": "synonym_demo",
+      "title": "Same Meaning, Different Words",
+      "instruction": "Pairs like these have zero shared keywords but nearly identical meaning. Semantic search captures this; keyword search cannot.",
+      "pair": {
+        "left": "car repair shop",
+        "right": "automobile service center"
+      },
+      "subtitle": "Zero shared keywords, but almost identical meaning.",
+      "meaning_space_note": "Meaning Space (simplified metaphor \u2014 not real coordinates)",
+      "points": [
+        { "label": "car repair shop", "x": 70, "y": 25, "color": "teal" },
+        { "label": "automobile service center", "x": 72, "y": 35, "color": "navy" },
+        { "label": "shoe brands", "x": 25, "y": 75, "color": "red" }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "embed_query",
+      "title": "Step 1: Embed the Query",
+      "query": "How do I stop my puppy from chewing my shoes?",
+      "model": "Embedding model (e.g. BERT)",
+      "embedding_preview": "[0.17, -0.42, 0.88, 0.03, ...]",
+      "instruction": "Notice that the query is transformed into a list of numbers (a vector). Read the explanation below and click Next when ready.",
+      "explanation": [
+        "The query was turned into a list of numbers called an embedding.",
+        "These numbers encode the meaning of the sentence, not just its words.",
+        "Think of the embedding as coordinates in a \"meaning space\" \u2014 sentences with similar meaning land near each other.",
+        "The exact numbers do not matter for this lesson. What matters is that the model tries to place similar meanings close together."
+      ]
+    },
+    {
+      "id": 5,
+      "type": "embed_documents",
+      "title": "Step 2: Embed Candidate Documents",
+      "instruction": "Each candidate document is embedded into the same meaning space. Hover over the dots to see which document is which.",
+      "meaning_space_note": "Meaning Space (metaphor)",
+      "points": [
+        { "label": "Query", "subtext": "stop puppy chewing shoes", "x": 72, "y": 25, "color": "teal" },
+        { "label": "Doc A", "subtext": "stop dogs biting slippers", "x": 78, "y": 32, "color": "green" },
+        { "label": "Doc B", "subtext": "puppy chewing fixes", "x": 42, "y": 45, "color": "navy" },
+        { "label": "Doc C", "subtext": "shoe brands", "x": 22, "y": 78, "color": "red" }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "score_rank",
+      "title": "Step 3: Score & Rank",
+      "instruction": "Each document gets a similarity score (closer in meaning = higher score). The system ranks documents by score.",
+      "rankings": [
+        {
+          "rank": 1,
+          "score": "0.91",
+          "doc_id": "A",
+          "title": "Stop dogs from biting slippers",
+          "reason": "stop \u2248 prevention \u00b7 dogs \u2248 puppy \u00b7 slippers \u2248 shoes \u00b7 biting \u2248 chewing",
+          "color": "green"
+        },
+        {
+          "rank": 2,
+          "score": "0.82",
+          "doc_id": "B",
+          "title": "Puppy chewing fixes with safe toys",
+          "reason": "puppy = puppy \u00b7 chewing = chewing \u00b7 different framing",
+          "color": "navy"
+        },
+        {
+          "rank": 3,
+          "score": "0.14",
+          "doc_id": "C",
+          "title": "Best leather shoe brands for winter",
+          "reason": "shoes = shoes, but the topic (shopping) is unrelated",
+          "color": "red"
+        }
+      ],
+      "note": "Scores are approximate for illustration.",
+      "insight": "Semantic search ranks Doc A first: it captures the user's intent even though it shares no exact words with the query."
+    },
+    {
+      "id": 7,
+      "type": "recap",
+      "title": "Recap: How Semantic Search Works",
+      "callout": "Semantic search works better than keyword matching when the right answer uses different words but expresses similar meaning.",
+      "instruction": "Review the three steps below. When you feel ready, click Start Quiz to test your understanding.",
+      "steps": [
+        {
+          "num": 1,
+          "title": "Embed the query",
+          "description": "Turn the user's question into a numeric vector that encodes meaning."
+        },
+        {
+          "num": 2,
+          "title": "Embed candidate documents",
+          "description": "Place each candidate in the same meaning space."
+        },
+        {
+          "num": 3,
+          "title": "Score closeness & rank",
+          "description": "Rank documents by distance to the query vector. Nearer = more relevant."
+        }
+      ]
+    }
+  ]
+}

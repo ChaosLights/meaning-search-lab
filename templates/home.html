@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Welcome — Meaning Search Lab{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="msl-card msl-home-card">
+    <h1>Welcome!</h1>
+    <p class="msl-tagline">{{ topic.tagline }}</p>
+
+    <div class="msl-callout">
+      <span class="ico">&#128161;</span>
+      <span>Why can semantic search match meaning even when the best
+            result does not reuse the same words as the query?</span>
+    </div>
+
+    <p class="text-muted mb-1">Your example query:</p>
+    <div class="msl-query-box">
+      <span>&#x1F50D;</span>
+      <span>&ldquo;{{ topic.example_query }}&rdquo;</span>
+    </div>
+
+    <form action="{{ url_for('start') }}" method="post" class="mt-4">
+      <button type="submit" class="msl-btn msl-btn-primary"
+              style="padding: 14px 32px; font-size: 17px;">
+        &#9658;&nbsp;&nbsp;Start lesson
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}
