@@ -72,9 +72,11 @@
       <div class="msl-space-title">{{ lesson.meaning_space_note }}</div>
       <div class="msl-space-canvas">
         {% for p in lesson.points %}
-          <div class="msl-point" style="left: {{ p.x }}%; top: {{ p.y }}%;">
+          <div class="msl-point point-{{ loop.index }}" style="left: {{ p.x }}%; top: {{ p.y }}%;">
             <span class="dot bg-{{ p.color }}"></span>
-            <span class="label color-{{ p.color }}">{{ p.label }}</span>
+            <span class="msl-point-text">
+              <span class="label color-{{ p.color }}">{{ p.label }}</span>
+            </span>
           </div>
         {% endfor %}
         <span class="msl-space-tag close">close!</span>
@@ -108,10 +110,10 @@
       <div class="msl-space-title">{{ lesson.meaning_space_note }}</div>
       <div class="msl-space-canvas">
         {% for p in lesson.points %}
-          <div class="msl-point" style="left: {{ p.x }}%; top: {{ p.y }}%;"
+          <div class="msl-point point-{{ loop.index }}" style="left: {{ p.x }}%; top: {{ p.y }}%;"
                title="{{ p.subtext }}">
             <span class="dot bg-{{ p.color }}"></span>
-            <span>
+            <span class="msl-point-text">
               <div class="label color-{{ p.color }}">{{ p.label }}</div>
               <div class="sub">{{ p.subtext }}</div>
             </span>
