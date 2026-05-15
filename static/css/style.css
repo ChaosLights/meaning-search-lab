@@ -296,6 +296,14 @@ body.msl-body {
 }
 .msl-point .label { font-weight: 600; font-size: 14px; }
 .msl-point .sub   { font-size: 12px; color: var(--msl-muted); }
+.msl-point.point-1 .msl-point-text {
+  position: relative;
+  top: -14px;
+}
+.msl-point.point-2 .msl-point-text {
+  position: relative;
+  top: 14px;
+}
 
 .color-teal  { color: var(--msl-teal); }
 .color-navy  { color: var(--msl-accent-blue); }
