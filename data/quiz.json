@@ -29,7 +29,7 @@
           "review": [
             {
               "heading": "If you chose A (motorcycle maintenance):",
-              "body": "This is a strong distractor! Motorcycles and cars are both motor vehicles, and maintenance is related to repair. But semantic search looks at the full intent: the query is about a car that will not start, while option A is about general motorcycle upkeep. The meaning is close but not the best match."
+              "body": "Motorcycle and car share the vehicle-repair domain, but semantic search looks at full intent. The query is about a starting failure; A is general upkeep \u2014 close in category, not in meaning."
             },
             {
               "heading": "If you chose C (car seat cleaning):",
