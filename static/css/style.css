@@ -104,11 +104,6 @@ body.msl-body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .msl-main { animation: none; }
-  .msl-btn:hover { transform: none; }
-}
-
 .msl-footnav {
   flex-shrink: 0;
   background: var(--msl-navy);
@@ -136,6 +131,11 @@ body.msl-body {
 .msl-btn:active { transform: translateY(0); }
 .msl-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
 
+@media (prefers-reduced-motion: reduce) {
+  .msl-main { animation: none; }
+  .msl-btn:hover { transform: none; }
+}
+
 .msl-btn-primary   { background: var(--msl-teal); color: #fff; }
 .msl-btn-secondary { background: var(--msl-navy); color: #fff; }
 .msl-btn-warning   { background: var(--msl-teal); color: #fff; }
@@ -162,7 +162,7 @@ body.msl-body {
   font-weight: 600;
   color: var(--msl-navy);
   margin: 0 0 20px 0;
-  letter-spacing: -0.4px;
+  letter-spacing: 0;
 }
 
 /* progress dots (top right of lesson) */
@@ -614,7 +614,7 @@ body.feedback-incorrect .msl-main { background: var(--msl-error-bg);   padding-b
 .msl-results-hero .score {
   font-size: 64px;
   font-weight: 600;
-  letter-spacing: -1px;
+  letter-spacing: 0;
   line-height: 1;
   margin: 10px 0;
 }
@@ -696,4 +696,25 @@ body.feedback-incorrect .msl-main { background: var(--msl-error-bg);   padding-b
   .msl-embed-arrow { display: none; }
   .msl-rank-row  { grid-template-columns: 56px 1fr; }
   .msl-rank-reason { grid-column: 1 / -1; padding: 0 18px 12px; justify-content: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .msl-main { padding: 24px 14px 92px; }
+  .msl-card { padding: 18px; }
+  .msl-page-title { font-size: 27px; line-height: 1.12; }
+  .msl-home-card h1 { font-size: 44px; }
+  .msl-callout { padding: 14px; }
+  .msl-query-box { font-size: 14px; align-items: flex-start; }
+  .msl-space { padding: 14px; }
+  .msl-space-svg { min-height: 300px; }
+  .msl-svg-label { font-size: 3.7px; }
+  .msl-svg-sub { font-size: 2.8px; }
+  .msl-svg-tag { font-size: 3.4px; }
+  .msl-score-row { grid-template-columns: 1fr; }
+  .msl-score-num { width: 100%; }
+  .msl-footer, .msl-footnav { padding-left: 14px; padding-right: 14px; }
+  .msl-footer { gap: 8px; }
+  .msl-btn { padding: 10px 14px; }
+  .msl-feedback-actions { flex-direction: column; align-items: stretch; }
+  .msl-feedback-actions .msl-btn { width: 100%; justify-content: center; }
 }
