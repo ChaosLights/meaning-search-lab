@@ -96,6 +96,17 @@ body.msl-body {
 .msl-main {
   flex: 1 0 auto;
   padding: 32px 24px 96px 24px;
+  animation: msl-fadein 200ms ease-out;
+}
+
+@keyframes msl-fadein {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .msl-main { animation: none; }
+  .msl-btn:hover { transform: none; }
 }
 
 .msl-footnav {
