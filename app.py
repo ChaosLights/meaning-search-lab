@@ -251,5 +251,11 @@ def debug_user_data():
     return jsonify(load_user_data())
 
 
+@app.errorhandler(404)
+def not_found(_e):
+    """Branded 404 page using the app chrome."""
+    return render_template("404.html"), 404
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found &mdash; Meaning Search Lab{% endblock %}
+
+{% block content %}
+<section class="msl-lesson-shell">
+  <div class="msl-card msl-empty-state">
+    <div class="msl-eyebrow">404</div>
+    <h1>Page not found.</h1>
+    <p class="msl-welcome-sub">
+      That page isn't part of this lesson path. Head home and continue the meaning search from there.
+    </p>
+    <a class="msl-btn msl-btn-primary" href="{{ url_for('home') }}">Back to Home</a>
+  </div>
+</section>
+{% endblock %}
