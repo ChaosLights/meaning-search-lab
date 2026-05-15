@@ -151,6 +151,11 @@ body.msl-body {
   padding: 24px;
   box-shadow: 0 1px 2px rgba(15,27,46,0.04);
 }
+.msl-empty-state {
+  max-width: 720px;
+  margin: 40px auto;
+  text-align: center;
+}
 
 .msl-page-title {
   font-size: 32px;
@@ -196,11 +201,23 @@ body.msl-body {
 .msl-home-card h1 {
   font-size: 56px;
   font-weight: 600;
-  letter-spacing: -1px;
+  letter-spacing: 0;
   margin: 0 0 8px 0;
   line-height: 1.05;
 }
-.msl-home-card .msl-tagline { color: var(--msl-grey-dark); font-size: 15px; }
+.msl-home-card .msl-welcome-sub,
+.msl-empty-state .msl-welcome-sub {
+  margin: 0 0 18px;
+  color: var(--msl-grey-dark);
+  font-size: 16px;
+  line-height: 1.5;
+}
+.msl-home-card .msl-tagline {
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: var(--msl-grey-dark);
+  font-size: 15px;
+}
 
 .msl-callout {
   background: var(--msl-teal-tint);
