@@ -73,10 +73,13 @@
       <svg class="msl-space-svg" viewBox="0 0 100 60" role="img"
            aria-label="Two meanings placed close together in meaning space">
         {% for p in lesson.points %}
+          {% set label_x = p.x - 3 if p.x >= 68 else p.x + 3 %}
+          {% set label_anchor = "end" if p.x >= 68 else "start" %}
           <g class="msl-svg-point">
             <circle cx="{{ p.x }}" cy="{{ p.y * 0.5 }}" r="2.1"
                     class="msl-svg-dot bg-{{ p.color }}"></circle>
-            <text x="{{ p.x + 3 }}" y="{{ p.y * 0.5 + 1.2 }}"
+            <text x="{{ label_x }}" y="{{ p.y * 0.5 + 1.2 }}"
+                  text-anchor="{{ label_anchor }}"
                   class="msl-svg-label color-{{ p.color }}">{{ p.label }}</text>
           </g>
         {% endfor %}
@@ -112,13 +115,31 @@
       <svg class="msl-space-svg" viewBox="0 0 100 60" role="img"
            aria-label="Three documents placed by semantic meaning">
         {% for p in lesson.points %}
+          {% if p.label == "Query" %}
+            {% set label_x = p.x + 3 %}
+            {% set label_anchor = "start" %}
+            {% set label_y = p.y * 0.5 - 0.9 %}
+            {% set sub_y = p.y * 0.5 + 1.8 %}
+          {% elif p.label == "Doc A" %}
+            {% set label_x = p.x - 3 %}
+            {% set label_anchor = "end" %}
+            {% set label_y = p.y * 0.5 + 1.4 %}
+            {% set sub_y = p.y * 0.5 + 4.1 %}
+          {% else %}
+            {% set label_x = p.x + 3 %}
+            {% set label_anchor = "start" %}
+            {% set label_y = p.y * 0.5 %}
+            {% set sub_y = p.y * 0.5 + 3.2 %}
+          {% endif %}
           <g class="msl-svg-point">
             <title>{{ p.subtext }}</title>
             <circle cx="{{ p.x }}" cy="{{ p.y * 0.5 }}" r="2.1"
                     class="msl-svg-dot bg-{{ p.color }}"></circle>
-            <text x="{{ p.x + 3 }}" y="{{ p.y * 0.5 }}"
+            <text x="{{ label_x }}" y="{{ label_y }}"
+                  text-anchor="{{ label_anchor }}"
                   class="msl-svg-label color-{{ p.color }}">{{ p.label }}</text>
-            <text x="{{ p.x + 3 }}" y="{{ p.y * 0.5 + 4 }}"
+            <text x="{{ label_x }}" y="{{ sub_y }}"
+                  text-anchor="{{ label_anchor }}"
                   class="msl-svg-sub">{{ p.subtext }}</text>
           </g>
         {% endfor %}

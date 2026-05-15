@@ -366,18 +366,18 @@ body.msl-body {
 .msl-svg-dot.bg-red { fill: var(--msl-error); }
 .msl-svg-dot.bg-green { fill: var(--msl-success); }
 .msl-svg-label {
-  font: 700 3.2px var(--font-body);
+  font: 700 1.45px var(--font-body);
 }
 .msl-svg-label.color-teal { fill: var(--msl-teal); }
 .msl-svg-label.color-navy { fill: var(--msl-navy); }
 .msl-svg-label.color-red { fill: var(--msl-error); }
 .msl-svg-label.color-green { fill: var(--msl-success); }
 .msl-svg-sub {
-  font: 400 2.5px var(--font-body);
+  font: 400 1.05px var(--font-body);
   fill: var(--msl-grey-dark);
 }
 .msl-svg-tag {
-  font: 700 3px var(--font-body);
+  font: 700 1.5px var(--font-body);
   pointer-events: none;
 }
 .msl-svg-tag.close { fill: var(--msl-success); }
@@ -709,9 +709,9 @@ body.feedback-incorrect .msl-main { background: var(--msl-error-bg);   padding-b
   .msl-query-box { font-size: 14px; align-items: flex-start; }
   .msl-space { padding: 14px; }
   .msl-space-svg { min-height: 300px; }
-  .msl-svg-label { font-size: 3.7px; }
-  .msl-svg-sub { font-size: 2.8px; }
-  .msl-svg-tag { font-size: 3.4px; }
+  .msl-svg-label { font-size: 2.7px; }
+  .msl-svg-sub { font-size: 1.95px; }
+  .msl-svg-tag { font-size: 2.4px; }
   .msl-score-row { grid-template-columns: 1fr; }
   .msl-score-num { width: 100%; }
   .msl-footer, .msl-footnav { padding-left: 14px; padding-right: 14px; }
