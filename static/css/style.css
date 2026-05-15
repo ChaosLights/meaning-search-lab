@@ -131,11 +131,6 @@ body.msl-body {
 .msl-btn:active { transform: translateY(0); }
 .msl-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
 
-@media (prefers-reduced-motion: reduce) {
-  .msl-main { animation: none; }
-  .msl-btn:hover { transform: none; }
-}
-
 .msl-btn-primary   { background: var(--msl-teal); color: #fff; }
 .msl-btn-secondary { background: var(--msl-navy); color: #fff; }
 .msl-btn-warning   { background: var(--msl-teal); color: #fff; }
@@ -454,7 +449,14 @@ body.msl-body {
   border: 1px solid var(--msl-border);
   overflow: hidden;
   margin-bottom: 12px;
+  animation: msl-fadein 320ms ease-out backwards;
 }
+.msl-score-row:nth-of-type(1),
+.msl-instruction + .msl-score-row { animation-delay: 60ms; }
+.msl-score-row:nth-of-type(2),
+.msl-instruction + .msl-score-row + .msl-score-row { animation-delay: 220ms; }
+.msl-score-row:nth-of-type(3),
+.msl-instruction + .msl-score-row + .msl-score-row + .msl-score-row { animation-delay: 380ms; }
 .msl-score-num {
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
@@ -717,4 +719,10 @@ body.feedback-incorrect .msl-main { background: var(--msl-error-bg);   padding-b
   .msl-btn { padding: 10px 14px; }
   .msl-feedback-actions { flex-direction: column; align-items: stretch; }
   .msl-feedback-actions .msl-btn { width: 100%; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .msl-main,
+  .msl-score-row { animation: none; }
+  .msl-btn:hover { transform: none; }
 }
