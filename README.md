@@ -7,6 +7,10 @@ A clickable web app teaching **why semantic search matches meaning, not just sha
 words**. Implements the iterated low-fi prototype from HW9 as a working Flask
 application.
 
+# Team Members
+
+- Can Wu — ChaosLights
+
 ## Quick start
 
 ```bash
